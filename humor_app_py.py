@@ -15,6 +15,7 @@ import streamlit as st
 from PIL import Image
   
 # loading in the model to predict on the data
+
 pickle_in = open('classifier.pkl', 'rb')
 classifier = pickle.load(pickle_in)
   
@@ -25,8 +26,7 @@ def welcome():
 # the data which the user inputs
 def prediction(questions_):  
    
-    prediction = classifier.predict(
-        [[questions_]])
+    prediction = classifier.predict([[questions_]])
     print(prediction)
     return prediction
       
@@ -50,15 +50,15 @@ def main():
       
     # the following lines create text boxes in which the user can enter 
     # the data required to make the prediction
-    questions_ = st.text_input("question", "Type Here")
+    question = st.text_input("question")
 
-    result =""
+    result ="Type here"
       
     # the below line ensures that when the button called 'Predict' is clicked, 
     # the prediction function defined above is called to make the prediction 
     # and store it in the variable result
     if st.button("Predict"):
-        result = prediction(questions_)
+        result = prediction(question)
     st.success('The output is {}'.format(result))
      
 if __name__=='__main__':
